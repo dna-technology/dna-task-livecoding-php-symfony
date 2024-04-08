@@ -7,6 +7,7 @@ use App\Services\PaymentService;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
 
 class PaymentController
 {
@@ -17,15 +18,16 @@ class PaymentController
     /**
      * @throws Exception
      */
+    #[Route('/api/payments', methods: ['POST'])]
     public function addPayment(Request $request): JsonResponse
     {
-        $req = $request->request;
+        $req = json_decode($request->getContent(), true);
 
         $paymentDto = new PaymentDto(
             null,
-            $req->getString('user_id'),
-            $req->getString('merchant_id'),
-            floatval($req->getString('amount')),
+            $req['user_id'],
+            $req['merchant_id'],
+            floatval($req['amount']),
         );
 
         $res = $this->paymentService->addPayment($paymentDto);

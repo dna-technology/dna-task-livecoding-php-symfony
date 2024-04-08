@@ -6,6 +6,7 @@ use App\Services\UserService;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Attribute\Route;
 
 class UserController
 {
@@ -16,14 +17,15 @@ class UserController
     /**
      * @throws Exception
      */
+    #[Route('/api/users', methods: ['POST'])]
     public function addUser(Request $request): JsonResponse
     {
-        $req = $request->request;
+        $req = json_decode($request->getContent(), true);
 
         $res = $this->userService->addUser(
-            $req->getString('fullName'),
-            $req->getString('email'),
-            $req->getString('merchantId'),
+            $req['fullName'],
+            $req['email'],
+            $req['merchantId'],
         );
 
         return new JsonResponse($res->toResponse());
