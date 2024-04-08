@@ -38,7 +38,7 @@ final class MerchantControllerTest extends WebTestCase {
         $response = json_decode(self::getClient()->getResponse()->getContent(), true);
 
         /** @var Merchant $storedMerchant */
-        $storedMerchant = self::getContainer()->get(ObjectManager::class)->getRepository(Merchant::class)->findOneBy(['merchantId' => $responseData['merchant_id']]);
+        $storedMerchant = self::getContainer()->get(ObjectManager::class)->getRepository(Merchant::class)->findOneBy(['merchantId' => $response['merchant_id']]);
         self::assertEquals($merchantName, $storedMerchant->getName());
     }
 }
