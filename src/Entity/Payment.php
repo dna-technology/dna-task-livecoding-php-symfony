@@ -19,6 +19,8 @@ final class Payment
     #[Column]
     private string $merchantId;
     #[Column]
+    private string $userId;
+    #[Column]
     private float $amount;
 
     public function getId(): int
@@ -59,5 +61,15 @@ final class Payment
     public function setAmount(float $amount): void
     {
         $this->amount = $amount;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(string $userId): void
+    {
+        $this->userId = $userId;
     }
 }
