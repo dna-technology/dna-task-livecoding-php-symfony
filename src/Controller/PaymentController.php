@@ -18,7 +18,7 @@ class PaymentController
     /**
      * @throws Exception
      */
-    #[Route('/api/payments', methods: ['POST'])]
+    #[Route('/api/transactions', methods: ['POST'])]
     public function addPayment(Request $request): JsonResponse
     {
         $req = json_decode($request->getContent(), true);
