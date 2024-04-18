@@ -1,10 +1,7 @@
 # Set up application
 To set up the application run following commands in your terminal:
 ```shell
-composer install
-docker run -p 5432:5432 --rm -e POSTGRES_PASSWORD=password postgres:16-alpine
-php bin/console doctrine:database:create --env=test
-php bin/console doctrine:schema:update --env=test --force
+docker compose up -d
 ```
 
 # Running tests
