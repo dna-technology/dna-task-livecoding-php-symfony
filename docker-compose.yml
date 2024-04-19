@@ -8,7 +8,8 @@ services:
   php:
     build: .
     volumes:
-      - '.:/srv'
+      - './src:/srv/src'
+      - './tests:/srv/tests'
     ports:
       - '80:8000'
     depends_on:

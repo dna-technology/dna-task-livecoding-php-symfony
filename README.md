@@ -1,7 +1,7 @@
 # Set up application
 To set up the application run following commands in your terminal:
 ```shell
-docker compose up -d
+make start
 ```
 
 # Running tests
